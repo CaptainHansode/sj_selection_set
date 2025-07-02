@@ -528,6 +528,7 @@ class SJSelectionSetLoadList(bpy.types.Operator, bpy_extras.io_utils.ImportHelpe
 
 class SJSelectionSetEditList(bpy.types.UIList):
     r""""""
+    bl_idname = "SJSELECTIONSETEDITLIST_UL_PANEL"
     def draw_item(
         self, context, layout, data, item, icon, active_data, active_propname, index):
         custom_icon = 'OBJECT_DATAMODE'
@@ -543,6 +544,7 @@ class SJSelectionSetEditList(bpy.types.UIList):
 class SJSelectionSetPanel(bpy.types.Panel):
     r"""UI """
     bl_label = "SJ Selection Set"
+    bl_idname = "SJSELECTIONSET_PT_PANEL"
     bl_space_type = "PROPERTIES"
     bl_region_type = "WINDOW"
     bl_context = "object"
@@ -569,6 +571,7 @@ class SJSelectionSetPanel(bpy.types.Panel):
 class SJSelectionSetListPanel(bpy.types.Panel):
     r"""UI"""
     bl_label = "SJ Selection Set List"
+    bl_idname = "SJSELECTIONSETLIST_PT_PANEL"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_context = "objectmode"
