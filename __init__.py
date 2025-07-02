@@ -45,7 +45,7 @@ import copy
 
 def select_current_selset(self, context):
     r"""選択"""
-    if len(context.scene.sj_sel_set_items) is 0:
+    if len(context.scene.sj_sel_set_items) == 0:
         return None
 
     index = int(self.selection_set_dplist)
@@ -53,7 +53,7 @@ def select_current_selset(self, context):
         context.scene.sj_sel_set_items[index].object_list,
         object_pairs_hook=collections.OrderedDict)
     
-    if len(obj_list) is 0:
+    if len(obj_list) == 0:
         return None
 
     bpy.ops.object.select_all(action='DESELECT')
@@ -74,7 +74,7 @@ def get_selection_list_items(scene, context):
     for i, item in enumerate(context.scene.sj_sel_set_items, 0):
         items.append((str(i), item.set_name, ''))
 
-    if len(items) is 0:
+    if len(items) == 0:
         items.append(('0', 'Selection Set Empty.', ''))
 
     return items
@@ -147,7 +147,7 @@ class SJSelectionSetAddItem(bpy.types.Operator):
 
     def execute(self, context):
         r""""""
-        if len(bpy.context.selected_objects) is 0:
+        if len(bpy.context.selected_objects) == 0:
             msg = 'Please Select any object.'
             # raiseするとスクリプトエラーっぽく吐かれちゃうからやめる
             # raise Exception("Please Select any object.")
@@ -225,7 +225,7 @@ class SJSelectionSetDeleteItemToolHeaderBt(bpy.types.Operator):
         r""""""
         sjss = context.scene.sj_sel_set_props
         s_list = context.scene.sj_sel_set_items
-        if (len(s_list) is 0) or (sjss.selection_set_dplist == ""):
+        if (len(s_list) == 0) or (sjss.selection_set_dplist == ""):
             return {'FINISHED'}
 
         index = int(sjss.selection_set_dplist)
@@ -326,7 +326,7 @@ class SJSelectionSetAddObjToSet(bpy.types.Operator):
 
     def execute(self, context):
         r""""""
-        if len(bpy.context.selected_objects) is 0:
+        if len(bpy.context.selected_objects) == 0:
             return {'FINISHED'}
 
         index = context.scene.sj_sel_set_item_index
@@ -415,7 +415,7 @@ class SJSelectionSetSelect(bpy.types.Operator):
             context.scene.sj_sel_set_items[index].object_list,
             object_pairs_hook=collections.OrderedDict)
 
-        if len(obj_list) is 0:
+        if len(obj_list) == 0:
             return {'FINISHED'}
         
         bpy.ops.object.select_all(action='DESELECT')
@@ -606,7 +606,7 @@ class SJSelectionSetListPanel(bpy.types.Panel):
         row.template_list(
             "SJSelectionSetEditList", "Sel Set List", context.scene, "sj_sel_set_items", context.scene, "sj_sel_set_item_index", rows=1)
 
-        if len(context.scene.sj_sel_set_items) is 0:
+        if len(context.scene.sj_sel_set_items) == 0:
             return None
 
         layout.separator(factor=2)
